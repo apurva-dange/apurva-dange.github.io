@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Apurva Dange – Product Manager</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0f0f13;--surface:#16161e;--surface2:#1e1e2a;
+  --border:#2a2a3a;--accent:#7c6af7;--accent2:#a78bfa;
+  --text:#e8e8f0;--muted:#8888a8;--tag-bg:#1e1a3a;
+  --tag-text:#a78bfa;--radius:14px;--green:#4ade80;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,sans-serif;min-height:100vh}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:rgba(15,15,19,.9);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:0 2.5rem;height:62px;display:flex;align-items:center;justify-content:space-between}
+.nav-name{font-weight:800;font-size:1rem;letter-spacing:.01em;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.nav-links{display:flex;gap:2rem}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:.875rem;font-weight:500;transition:color .2s;position:relative;padding-bottom:3px}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--accent2);border-radius:2px;transition:width .25s}
+.nav-links a.active{color:var(--text)}
+.nav-links a.active::after{width:100%}
+.nav-cta{background:var(--accent);color:#fff;padding:.45rem 1.1rem;border-radius:7px;font-size:.82rem;font-weight:600;text-decoration:none;transition:opacity .2s}
+.nav-cta:hover{opacity:.85}
+
+.container{max-width:980px;margin:0 auto;padding:0 2.5rem}
+
+/* HERO */
+.hero{padding:7rem 0 5rem;border-bottom:1px solid var(--border)}
+.hero-eyebrow{display:flex;align-items:center;gap:.6rem;margin-bottom:1.2rem}
+.hero-badge{background:var(--tag-bg);color:var(--accent2);border:1px solid var(--border);padding:.3rem .85rem;border-radius:30px;font-size:.78rem;font-weight:600;letter-spacing:.06em}
+.hero-dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.hero-available{color:var(--muted);font-size:.82rem}
+.hero-layout{display:flex;align-items:center;gap:3rem;flex-wrap:wrap}
+.hero-text{flex:1;min-width:280px}
+.hero-name{font-size:clamp(2.4rem,6vw,3.6rem);font-weight:900;line-height:1.08;letter-spacing:-.02em;margin-bottom:.9rem}
+.hero-name span{background:linear-gradient(135deg,var(--accent),var(--accent2) 60%,#e879f9);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-tagline{color:var(--muted);font-size:1.15rem;line-height:1.65;max-width:520px;margin-bottom:.5rem;min-height:2.4rem}
+.cursor{display:inline-block;width:2px;height:1.1em;background:var(--accent2);margin-left:2px;vertical-align:text-bottom;animation:blink .7s step-end infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+.hero-sub{color:var(--muted);font-size:.92rem;margin-bottom:2rem;opacity:.75}
+.hero-actions{display:flex;gap:.85rem;flex-wrap:wrap}
+.btn-primary{background:linear-gradient(135deg,var(--accent),#6d5ce7);color:#fff;padding:.7rem 1.5rem;border-radius:9px;text-decoration:none;font-weight:600;font-size:.9rem;transition:opacity .2s,transform .1s;box-shadow:0 4px 20px rgba(124,106,247,.3)}
+.btn-primary:hover{opacity:.9;transform:translateY(-1px)}
+.btn-ghost{background:transparent;color:var(--text);padding:.7rem 1.5rem;border-radius:9px;text-decoration:none;font-weight:600;font-size:.9rem;border:1.5px solid var(--border);transition:border-color .2s}
+.btn-ghost:hover{border-color:var(--accent)}
+.hero-avatar-wrap{flex-shrink:0}
+.hero-avatar{width:180px;height:180px;border-radius:50%;object-fit:cover;border:3px solid var(--accent);box-shadow:0 0 40px rgba(124,106,247,.25)}
+
+/* STATS */
+.stats-bar{display:flex;gap:0;flex-wrap:wrap;padding:0;border-bottom:1px solid var(--border)}
+.stat{flex:1;min-width:120px;padding:2rem 1.5rem;border-right:1px solid var(--border);text-align:center}
+.stat:last-child{border-right:none}
+.stat-val{font-size:2rem;font-weight:900;background:linear-gradient(135deg,var(--text),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.stat-label{color:var(--muted);font-size:.78rem;margin-top:.3rem;letter-spacing:.03em;text-transform:uppercase}
+
+/* SECTIONS */
+section{padding:4rem 0;border-bottom:1px solid var(--border)}
+section:last-of-type{border-bottom:none}
+.section-label{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent2);margin-bottom:.5rem}
+.section-title{font-size:1.9rem;font-weight:800;margin-bottom:.6rem;letter-spacing:-.01em}
+.section-desc{color:var(--muted);line-height:1.7;max-width:600px;margin-bottom:2.5rem;font-size:.97rem}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+@media(max-width:640px){.about-grid{grid-template-columns:1fr}}
+.about-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem}
+.about-card h4{font-size:.85rem;font-weight:700;color:var(--accent2);letter-spacing:.06em;text-transform:uppercase;margin-bottom:.8rem}
+.about-card p{color:var(--muted);font-size:.9rem;line-height:1.75}
+.about-main{grid-column:1/-1;background:var(--surface2)}
+
+/* SKILLS */
+.skills-wrap{display:flex;gap:3rem;flex-wrap:wrap}
+.skills-col{flex:1;min-width:240px;display:flex;flex-direction:column;gap:1rem}
+.skill-row{}
+.skill-meta{display:flex;justify-content:space-between;font-size:.85rem;margin-bottom:.4rem}
+.skill-name{font-weight:600;color:var(--text)}
+.skill-pct{color:var(--muted);font-size:.8rem}
+.bar-track{background:var(--surface2);border-radius:99px;height:6px;overflow:hidden;border:1px solid var(--border)}
+.bar-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--accent),var(--accent2));width:0%;transition:width 1.2s cubic-bezier(.4,0,.2,1)}
+.skills-tags-title{font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:2rem 0 .8rem}
+.tags-cloud{display:flex;flex-wrap:wrap;gap:.5rem}
+.skill-tag{background:var(--tag-bg);color:var(--tag-text);padding:.35rem .9rem;border-radius:30px;font-size:.8rem;font-weight:500;border:1px solid var(--border)}
+
+/* PROJECTS */
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:1.25rem}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.6rem;display:flex;flex-direction:column;gap:.9rem;transition:border-color .25s,transform .2s,box-shadow .2s;position:relative;overflow:hidden}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2));opacity:0;transition:opacity .25s}
+.card:hover{border-color:var(--accent);transform:translateY(-4px);box-shadow:0 12px 36px rgba(124,106,247,.12)}
+.card:hover::before{opacity:1}
+.card-type{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent2)}
+.card-name{font-size:1.08rem;font-weight:700;line-height:1.3}
+.card-desc{color:var(--muted);font-size:.875rem;line-height:1.65;flex:1}
+.card-tags{display:flex;flex-wrap:wrap;gap:.4rem}
+.card-tag{background:var(--tag-bg);color:var(--tag-text);padding:.22rem .65rem;border-radius:20px;font-size:.74rem;font-weight:500}
+.card-footer{display:flex;align-items:center;justify-content:space-between;margin-top:auto}
+.card-link{display:inline-flex;align-items:center;gap:.35rem;color:var(--accent2);text-decoration:none;font-size:.82rem;font-weight:600}
+.card-link:hover{text-decoration:underline}
+.card-stars{color:var(--muted);font-size:.8rem}
+
+/* FOOTER */
+footer{padding:3rem 0;text-align:center}
+.footer-name{font-size:1.4rem;font-weight:800;margin-bottom:.5rem;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.footer-links{display:flex;justify-content:center;gap:2rem;flex-wrap:wrap;margin:1rem 0}
+.footer-links a{color:var(--muted);text-decoration:none;font-size:.88rem;transition:color .2s}
+.footer-links a:hover{color:var(--accent2)}
+.footer-copy{color:var(--muted);font-size:.8rem;margin-top:1rem;opacity:.6}
+
+/* ANIMATIONS */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .65s ease,transform .65s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-left{opacity:0;transform:translateX(-30px);transition:opacity .7s ease,transform .7s ease}
+.reveal-left.visible{opacity:1;transform:translateX(0)}
+.stagger>*{opacity:0;transform:translateY(22px);transition:opacity .5s ease,transform .5s ease}
+.stagger>*.visible{opacity:1;transform:translateY(0)}
+
+@media(max-width:600px){
+  nav{padding:0 1rem}.container{padding:0 1rem}
+  .hero{padding:4rem 0 3rem}.hero-avatar{width:110px;height:110px}
+  .stats-bar{flex-direction:column}.stat{border-right:none;border-bottom:1px solid var(--border)}
+  .stat:last-child{border-bottom:none}
+}
+</style>
+</head>
+<body>
+
+<nav id="mainNav">
+  <div class="nav-name">Apurva Dange</div>
+  <div class="nav-links">
+    <a href="#about" data-section="about">About</a>
+    <a href="#skills" data-section="skills">Skills</a>
+    <a href="#projects" data-section="projects">Projects</a>
+  </div>
+  <a class="nav-cta" href="https://www.linkedin.com/in/apurvadange/" target="_blank">Let's Connect</a>
+</nav>
+
+<div class="container">
+
+  <!-- HERO -->
+  <div class="hero" id="heroSection">
+    <div class="hero-eyebrow">
+      <span class="hero-badge">Product Manager · GenAI · HealthTech</span>
+      <div class="hero-dot"></div>
+      <span class="hero-available">Open to opportunities</span>
+    </div>
+    <div class="hero-layout">
+      <div class="hero-text reveal-left">
+        <div class="hero-name">Hi, I'm <span>Apurva Dange</span></div>
+        <div class="hero-tagline" id="heroTagline"><span class="cursor"></span></div>
+        <div class="hero-sub">Based in Scottsdale, AZ · Currently @ AdviNOW</div>
+        <div class="hero-actions">
+          <a class="btn-primary" href="#projects">View My Work</a>
+          <a class="btn-ghost" href="https://www.linkedin.com/in/apurvadange/" target="_blank">LinkedIn →</a>
+          <a class="btn-ghost" href="https://medium.com/@adange" target="_blank">Medium →</a>
+        </div>
+      </div>
+      <div class="hero-avatar-wrap reveal">
+        <img class="hero-avatar" src="https://avatars.githubusercontent.com/u/91502734?v=4" alt="Apurva Dange"/>
+      </div>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats-bar reveal" id="statsBar">
+    <div class="stat"><div class="stat-val">5+</div><div class="stat-label">Case Studies</div></div>
+    <div class="stat"><div class="stat-val">0→1</div><div class="stat-label">Products Built</div></div>
+    <div class="stat"><div class="stat-val">1st</div><div class="stat-label">Intel Startup Lab</div></div>
+    <div class="stat"><div class="stat-val">3</div><div class="stat-label">Industries Spanned</div></div>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-label reveal">About Me</div>
+    <div class="section-title reveal">Who I Am</div>
+    <div class="about-grid stagger">
+      <div class="about-card about-main">
+        <h4>My Story</h4>
+        <p>I'm a Product Manager working at the intersection of HealthTech, AI, and User Experience. With a background in software QA and data analytics, I specialize in turning complex, ambiguous problems into intuitive products that create measurable impact. My passion was sparked by seeing how modern AI tools can fundamentally improve operability in healthcare — and that's the mission I'm building toward.</p>
+      </div>
+      <div class="about-card">
+        <h4>What I Do</h4>
+        <p>I lead 0-to-1 product development — from market research and competitive analysis through PRDs, roadmaps, and launch. I thrive in fast-moving environments where PM, design, and engineering intersect.</p>
+      </div>
+      <div class="about-card">
+        <h4>Current Focus</h4>
+        <p>Building practical AI-powered products at AdviNOW that scale. Actively exploring how GenAI can simplify clinical workflows and reduce friction for both patients and providers.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="section-label reveal">Expertise</div>
+    <div class="section-title reveal">Skills & Proficiency</div>
+    <div class="skills-wrap">
+      <div class="skills-col stagger" id="skillBars1"></div>
+      <div class="skills-col stagger" id="skillBars2"></div>
+    </div>
+    <div class="skills-tags-title reveal">Tools & Technologies</div>
+    <div class="tags-cloud reveal">
+      <span class="skill-tag">Figma</span><span class="skill-tag">SQL</span><span class="skill-tag">Python</span>
+      <span class="skill-tag">Jupyter Notebook</span><span class="skill-tag">Jira</span><span class="skill-tag">Notion</span>
+      <span class="skill-tag">OpenAI API</span><span class="skill-tag">Mixpanel</span><span class="skill-tag">Amplitude</span>
+      <span class="skill-tag">Linear Regression</span><span class="skill-tag">A/B Testing</span><span class="skill-tag">Miro</span>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-label reveal">Work</div>
+    <div class="section-title reveal">Featured Projects</div>
+    <div class="section-desc reveal">A selection of product case studies, strategic analyses, and 0-to-1 builds from my GitHub — each one documenting real PM thinking end-to-end.</div>
+    <div class="projects-grid stagger">
+
+      <div class="card">
+        <div class="card-type">AI Product · Case Study</div>
+        <div class="card-name">Anna AI – PM Case Study</div>
+        <div class="card-desc">Full 0-to-1 product build for an AI assistant, documented from idea to research-driven solution. Covers market analysis, competitive benchmarking, PRD, and user-centered design decisions.</div>
+        <div class="card-tags">
+          <span class="card-tag">GenAI</span><span class="card-tag">Market Research</span><span class="card-tag">PRD</span>
+        </div>
+        <div class="card-footer">
+          <a class="card-link" href="https://github.com/apurva-dange/anna_ai_pm_case_study" target="_blank">View Case Study →</a>
+          <span class="card-stars">★ 1</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-type">EdTech · 0→1 · Award Winner</div>
+        <div class="card-name">Enlighten – AI EdTech App</div>
+        <div class="card-desc">0-to-1 PM case study for an AI-powered education platform targeting students. Secured seed funding and won 1st place at Intel Startup Lab. Full product strategy and go-to-market included.</div>
+        <div class="card-tags">
+          <span class="card-tag">EdTech</span><span class="card-tag">Startup</span><span class="card-tag">Go-to-Market</span>
+        </div>
+        <div class="card-footer">
+          <a class="card-link" href="https://github.com/apurva-dange/enlighten_product_case_study" target="_blank">View Case Study →</a>
+          <span class="card-stars">★ 1</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-type">HealthTech · Strategy</div>
+        <div class="card-name">AI in Healthcare – Strategic Analysis</div>
+        <div class="card-desc">Deep strategic analysis of AI's role in healthcare. Evaluates Microsoft, Google, and IBM using leading frameworks to map competitive dynamics, market trends, and long-term sustainable advantage.</div>
+        <div class="card-tags">
+          <span class="card-tag">Healthcare</span><span class="card-tag">Strategy</span><span class="card-tag">Competitive Analysis</span>
+        </div>
+        <div class="card-footer">
+          <a class="card-link" href="https://github.com/apurva-dange/strategy_analysis_ai_healthcare_industry" target="_blank">View Analysis →</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-type">HealthTech · Digital Health</div>
+        <div class="card-name">CareLink – Seizure Detection Platform</div>
+        <div class="card-desc">Product design for a real-time seizure detection and family escalation platform for vulnerable adolescents. Explores wearable-cloud integration, IT governance, and digital health solution design.</div>
+        <div class="card-tags">
+          <span class="card-tag">Wearables</span><span class="card-tag">Cloud</span><span class="card-tag">Digital Health</span>
+        </div>
+        <div class="card-footer">
+          <a class="card-link" href="https://github.com/apurva-dange/carelink_case_study" target="_blank">View Case Study →</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-type">Data Analytics · Python</div>
+        <div class="card-name">Data-Driven Decision Making</div>
+        <div class="card-desc">Applied data analytics case study using MCU box office data to detect performance trends and forecast profitability. Uses Python, Welch's T-test, and linear regression in a Jupyter Notebook.</div>
+        <div class="card-tags">
+          <span class="card-tag">Python</span><span class="card-tag">Statistics</span><span class="card-tag">Forecasting</span>
+        </div>
+        <div class="card-footer">
+          <a class="card-link" href="https://github.com/apurva-dange/data_driven_decision_making" target="_blank">View Project →</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-name">Apurva Dange</div>
+    <div style="color:var(--muted);font-size:.88rem;margin-bottom:.5rem">GenAI · Product Management · HealthTech</div>
+    <div class="footer-links">
+      <a href="https://github.com/apurva-dange" target="_blank">GitHub</a>
+      <a href="https://www.linkedin.com/in/apurvadange/" target="_blank">LinkedIn</a>
+      <a href="https://medium.com/@adange" target="_blank">Medium</a>
+    </div>
+    <div class="footer-copy">© 2026 Apurva Dange · Scottsdale, AZ</div>
+  </div>
+</footer>
+
+<script>
+/* TYPEWRITER */
+function typewriter(el, text, speed=40) {
+  return new Promise(resolve => {
+    el.innerHTML = '<span class="cursor"></span>';
+    let i = 0;
+    const tick = () => {
+      if (i <= text.length) {
+        el.innerHTML = text.slice(0,i) + '<span class="cursor"></span>';
+        i++;
+        setTimeout(tick, speed + Math.random()*18);
+      } else resolve();
+    };
+    tick();
+  });
+}
+
+/* SKILL BARS */
+const skills1 = [
+  {name:'Product Strategy',pct:92},
+  {name:'User Research & UX',pct:88},
+  {name:'AI / GenAI Products',pct:85},
+  {name:'Roadmap Planning',pct:90},
+  {name:'Stakeholder Communication',pct:87},
+];
+const skills2 = [
+  {name:'Data Analytics',pct:80},
+  {name:'Competitive Analysis',pct:88},
+  {name:'Go-to-Market Strategy',pct:82},
+  {name:'HealthTech Domain',pct:85},
+  {name:'Python / SQL',pct:70},
+];
+function renderBars(id, arr) {
+  document.getElementById(id).innerHTML = arr.map(s=>`
+    <div class="skill-row">
+      <div class="skill-meta">
+        <span class="skill-name">${s.name}</span>
+        <span class="skill-pct">${s.pct}%</span>
+      </div>
+      <div class="bar-track"><div class="bar-fill" data-pct="${s.pct}"></div></div>
+    </div>`).join('');
+}
+renderBars('skillBars1', skills1);
+renderBars('skillBars2', skills2);
+
+/* SCROLL REVEAL */
+function initReveal() {
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const el = e.target;
+      if (el.classList.contains('stagger')) {
+        [...el.children].forEach((child, i) => {
+          setTimeout(() => {
+            child.classList.add('visible');
+            const fill = child.querySelector('.bar-fill');
+            if (fill) fill.style.width = fill.dataset.pct + '%';
+          }, i * 100);
+        });
+      } else {
+        el.classList.add('visible');
+      }
+      io.unobserve(el);
+    });
+  }, {threshold: 0.1});
+  document.querySelectorAll('.reveal,.reveal-left,.stagger').forEach(el => io.observe(el));
+}
+
+/* ACTIVE NAV */
+function initActiveNav() {
+  const links = document.querySelectorAll('.nav-links a');
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting)
+        links.forEach(a => a.classList.toggle('active', a.dataset.section === e.target.id));
+    });
+  }, {rootMargin:'-40% 0px -55% 0px'});
+  ['about','skills','projects'].forEach(id => { const s=document.getElementById(id); if(s) io.observe(s); });
+}
+
+/* INIT */
+window.addEventListener('DOMContentLoaded', async () => {
+  initReveal();
+  initActiveNav();
+  await new Promise(r => setTimeout(r, 300));
+  await typewriter(document.getElementById('heroTagline'),
+    'Building AI products at the intersection of HealthTech, UX & scale.');
+});
+</script>
+</body>
+</html>
